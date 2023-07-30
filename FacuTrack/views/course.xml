@@ -1,0 +1,102 @@
+<odoo>
+    <data>
+
+        <record id="facu_course_action" model="ir.actions.act_window">
+            <field name="name">Courses</field>
+            <field name="res_model">facu_track.course</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to create a new course.
+                </p>
+            </field>
+        </record>
+
+
+        <record id="view_faculty_course_tree" model="ir.ui.view">
+            <field name="name">course.tree</field>
+            <field name="model">facu_track.course</field>
+            <field name="arch" type="xml">
+                <tree string="Courses">
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_faculty_course_form" model="ir.ui.view">
+            <field name="name">course.form</field>
+            <field name="model">facu_track.course</field>
+            <field name="arch" type="xml">
+                <form string="Course">
+                    <header>
+                        <button name="confirm_attendance" string="Confirm Attendance" type="object" class="oe_highlight"
+                                groups="facu_track.facu_track_students_group"/>
+                        <button name="access_location" string="Check Your Location" type="object" class="oe_highlight"
+                                groups="facu_track.facu_track_students_group"/>
+                        <button name="empty_list" string="Clear Attendance" type="object"
+                                class="oe_highlight" groups="facu_track.facu_track_profs_group"/>
+                        <!--                        <button name="test" string="test" type="object"-->
+                        <!--                                class="oe_highlight"/>-->
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="prof_id"/>
+                            <field name="begining_time"/>
+                            <field name="end_time"/>
+                            <field name="number_of_student" invisible="1"/>
+                            <field name="location_ids"
+                                   groups="facu_track.facu_track_students_group">
+                                <tree string="Location">
+                                    <field name="latitude"/>
+                                    <field name="longitude"/>
+                                </tree>
+                                <form string="Location">
+                                    <group>
+                                        <field name="latitude"/>
+                                        <field name="longitude"/>
+                                    </group>
+                                </form>
+                            </field>
+
+                            <field name="student_ids">
+                                <tree string="Registration">
+                                    <field name="name"/>
+                                    <field name="code"/>
+                                    <field name="date"/>
+                                </tree>
+                                <form string="Registration">
+                                    <group>
+                                        <field name="name"/>
+                                        <field name="code"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="view_facu_track_course_graph">
+            <field name="name">facu_track.course graph</field>
+            <field name="model">facu_track.course</field>
+            <field name="arch" type="xml">
+                <graph string="Student Count" sample="1">
+                    <field name="name"/>
+                    <field name="number_of_student" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+
+        <menuitem id="facu_track_course"
+                  name="Course"
+                  parent="facu_track_root"
+                  action="facu_course_action"/>
+
+    </data>
+</odoo>

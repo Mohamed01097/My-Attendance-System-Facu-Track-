@@ -1,0 +1,63 @@
+<odoo>
+    <data>
+
+        <record id="facu_student_action" model="ir.actions.act_window">
+            <field name="name">Student Action</field>
+            <field name="res_model">facu_track.student</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to create a new student.
+                </p>
+            </field>
+
+        </record>
+
+        <record id="student_tree_view" model="ir.ui.view">
+            <field name="name">student tree</field>
+            <field name="model">facu_track.student</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="dept_id"/>
+                    <field name="group"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="student_form_view" model="ir.ui.view">
+            <field name="name">student form</field>
+            <field name="model">facu_track.student</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="dept_id"/>
+                            <field name="group"/>
+                            <field name="course_id"/>
+                            <field name="date"/>
+                            <field name="prof_id"/>
+                            <field name="clear_location" invisible="1"/>
+                        </group>
+                        <group string="location">
+                            <field name="latitude" id="lat"/>
+                            <field name="longitude" id="lng"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <menuitem id="facu_track_root" name="FacuTrack" sequence="10"
+                  groups="base.group_user"/>
+
+        <menuitem id="facu_track_student"
+                  name="Student"
+                  parent="facu_track_root"
+                  action="facu_student_action"/>
+
+    </data>
+</odoo>
