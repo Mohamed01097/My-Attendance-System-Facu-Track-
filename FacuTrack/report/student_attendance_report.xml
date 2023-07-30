@@ -1,0 +1,94 @@
+<odoo>
+    <data>
+        <record id="facu_track_student_attendance_report_format_paper" model="report.paperformat">
+            <field name="name">Student Attendance Report Paper</field>
+            <field name="format">A3</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">0</field>
+            <field name="margin_bottom">0</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">0</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">35</field>
+            <field name="dpi">90</field>
+        </record>
+
+        <record id="facu_track_student_attendance_report" model="ir.actions.report">
+            <field name="name">Print Attendance</field>
+            <field name="model">facu_track.course</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">facu_track.facu_track_student_attendance_report_template</field>
+            <field name="report_file">facu_track.facu_track_student_attendance_report_template</field>
+            <field name="binding_model_id" ref="model_facu_track_course"/>
+            <field name="groups_id" eval="[(6, 0, [ref('facu_track.facu_track_profs_group')])]"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="facu_track.facu_track_student_attendance_report_format_paper"/>
+        </record>
+
+        <template id="facu_track_student_attendance_report_template">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <t t-foreach="docs" t-as="doc">
+                        <div class="page">
+                            <h1 style="text-align:center;">Attendance For
+                                <span t-esc="doc.name"/>
+                                Lecture
+                            </h1>
+                            <br/>
+                            <div>
+                                <p>
+                                    Date Of production :
+                                    <span t-esc="doc.set_date_time_now()"/>
+                                </p>
+
+                                <img t-att-src="'/report/barcode/Code128/'+'hello'"
+                                     style="width:200px;height:50px" alt="Barcode"/>
+                            </div>
+                            <br/>
+                            <div>
+                                <table style="text-align:center; border: 2px solid black; width:100%;">
+                                    <tr>
+                                        <th style="padding: 10px; background-color: #96D4D4;">Sequence</th>
+                                        <th style="padding: 10px;background-color: #96D4D4;">Name</th>
+                                        <th style="padding: 10px;background-color: #96D4D4;">Code</th>
+                                        <th style="padding: 10px;background-color: #96D4D4;">Time Of Attend</th>
+                                    </tr>
+                                    <t t-foreach="doc.student_ids" t-as="id">
+                                        <tr>
+                                            <td style="padding: 10px; background-color:#a3a375">
+                                                <span t-esc="id_index +1"/>
+                                            </td>
+                                            <td style="padding: 10px; background-color:#a3a375">
+                                                <span t-esc="id.name"/>
+                                            </td>
+                                            <td style="padding: 10px; background-color:#a3a375">
+                                                <span t-esc="id.code"/>
+                                            </td>
+                                            <td style="padding: 10px; background-color:#a3a375">
+                                                <span t-esc="id.date"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </table>
+                            </div>
+                        </div>
+                        <br/>
+                        <t t-set="student_list" t-value="[]"/>
+                        <t t-foreach="doc.student_ids" t-as="student">
+                            <t t-set="student_list" t-value="student_list + [student.name]"/>
+                        </t>
+                        <div class="col-auto col-3 mw-100 mb-2">
+                            <img style="display:block;text-align:center;"
+                                 t-att-src="'/report/barcode/?type=QR&amp;value=%s&amp;width=%s&amp;height=%s' % (student_list[0:], 600, 600)"
+                                 alt="QR Code"/>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+
+    </data>
+</odoo>
