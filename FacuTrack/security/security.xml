@@ -1,0 +1,167 @@
+<odoo>
+    <data>
+
+        <record id="facu_track_admins_group" model="res.groups">
+            <field name="name">Admin/Group</field>
+        </record>
+        
+        <record id="facu_track_students_group" model="res.groups">
+            <field name="name">Student/Group</field>
+        </record>
+
+        <record id="facu_track_profs_group" model="res.groups">
+            <field name="name">Professor/Group</field>
+        </record>
+
+
+        <!--   Students Access Rights  -->
+
+        <record id="admin_group_facu_track_accses_model_student" model="ir.model.access">
+            <field name="name">Admin Access Rights For Students</field>
+            <field name="model_id" ref="model_facu_track_student"/>
+            <field name="group_id" ref="facu_track_admins_group"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="admin_group_facu_track_accses_model_course" model="ir.model.access">
+            <field name="name">Course Access Rights For Admins</field>
+            <field name="model_id" ref="model_facu_track_course"/>
+            <field name="group_id" ref="facu_track_admins_group"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="admin_group_facu_track_accses_model_prof" model="ir.model.access">
+            <field name="name">Professor Access Rights For Admins</field>
+            <field name="model_id" ref="model_facu_track_prof"/>
+            <field name="group_id" ref="facu_track_admins_group"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record>
+
+        <record id="admin_group_facu_track_accses_model_dept" model="ir.model.access">
+            <field name="name">Department Access Rights For Admins</field>
+            <field name="model_id" ref="model_facu_track_dept"/>
+            <field name="group_id" ref="facu_track_admins_group"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+        </record> 
+        
+        <!--   Students Access Rights  -->
+
+        <record id="student_group_facu_track_accses_model_student" model="ir.model.access">
+            <field name="name">Student Access Rights For Students</field>
+            <field name="model_id" ref="model_facu_track_student"/>
+            <field name="group_id" ref="facu_track_students_group"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+        <record id="student_group_facu_track_accses_model_course" model="ir.model.access">
+            <field name="name">Course Access Rights For Students</field>
+            <field name="model_id" ref="model_facu_track_course"/>
+            <field name="group_id" ref="facu_track_students_group"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+        <record id="student_group_facu_track_accses_model_prof" model="ir.model.access">
+            <field name="name">Professor Access Rights For Students</field>
+            <field name="model_id" ref="model_facu_track_prof"/>
+            <field name="group_id" ref="facu_track_students_group"/>
+            <field name="perm_read" eval="0"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+        <record id="student_group_facu_track_accses_model_dept" model="ir.model.access">
+            <field name="name">Department Access Rights For Students</field>
+            <field name="model_id" ref="model_facu_track_dept"/>
+            <field name="group_id" ref="facu_track_students_group"/>
+            <field name="perm_read" eval="0"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+        <!--   Professors Access Rights  -->
+
+        <record id="prof_group_facu_track_accses_model_student" model="ir.model.access">
+            <field name="name">Professors Access Rights For Student</field>
+            <field name="model_id" ref="model_facu_track_student"/>
+            <field name="group_id" ref="facu_track_profs_group"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+        <record id="prof_group_facu_track_accses_model_course" model="ir.model.access">
+            <field name="name">Professors Access Rights For Course</field>
+            <field name="model_id" ref="model_facu_track_course"/>
+            <field name="group_id" ref="facu_track_profs_group"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+        <record id="prof_group_facu_track_accses_model_prof" model="ir.model.access">
+            <field name="name">Professors Access Rights For Professor</field>
+            <field name="model_id" ref="model_facu_track_prof"/>
+            <field name="group_id" ref="facu_track_profs_group"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+        <record id="prof_group_facu_track_accses_model_dept" model="ir.model.access">
+            <field name="name">Professors Access Rights For Department</field>
+            <field name="model_id" ref="model_facu_track_dept"/>
+            <field name="group_id" ref="facu_track_profs_group"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+        </record>
+
+
+        <record model="ir.rule" id="facu_track_courses_record_rules">
+            <field name="name">Record Rule For The Professors In Courses</field>
+            <field name="model_id" ref="model_facu_track_course"/>
+            <field eval="[(4,ref('facu_track.facu_track_profs_group'))]" name="groups"/>
+            <field name="domain_force">[('prof_id.name','=',user.name)]</field>
+        </record>
+
+        <record model="ir.rule" id="facu_track_profs_record_rules">
+            <field name="name">Record Rule For The Professors In Professors</field>
+            <field name="model_id" ref="model_facu_track_prof"/>
+            <field eval="[(4,ref('facu_track.facu_track_profs_group'))]" name="groups"/>
+            <field name="domain_force">[('name','=',user.name)]</field>
+        </record>
+
+        <record model="ir.rule" id="facu_track_students_record_rules">
+            <field name="name">Record Rule For The Students In Students</field>
+            <field name="model_id" ref="model_facu_track_student"/>
+            <field eval="[(4,ref('facu_track.facu_track_students_group'))]" name="groups"/>
+            <field name="domain_force">[('name','=',user.name)]</field>
+        </record>
+
+
+    </data>
+</odoo>
