@@ -141,33 +141,33 @@ class Course(models.Model):
         return now
 
 
-class ResUser(models.Model):
-    _inherit = 'res.users'
+# class ResUser(models.Model):
+#     _inherit = 'res.users'
 
-    def delete_users_from_group(self):
-        for user in self.search([('id', '>', 2)]):
-            if user.has_group("base.group_portal"):
-                user.unlink()
+#     def delete_users_from_group(self):
+#         for user in self.search([('id', '>', 2)]):
+#             if user.has_group("base.group_portal"):
+#                 user.unlink()
 
-    def add_to_group(self, group_xml_id):
-        users = self.env['facu_track.prof'].search([('id', '=', 2)])
-        group_id = self.env.ref(group_xml_id)
-        group_id.users = [(4, user.id) for user in users]
+#     def add_to_group(self, group_xml_id):
+#         users = self.env['facu_track.prof'].search([('id', '=', 2)])
+#         group_id = self.env.ref(group_xml_id)
+#         group_id.users = [(4, user.id) for user in users]
 
-    def call_add_to_group(self):
-        self.add_to_group('facu_track.facu_track_profs_group')
+#     def call_add_to_group(self):
+#         self.add_to_group('facu_track.facu_track_profs_group')
 
-    def remove_from_groups(self, user_ids, group_ids):
-        users = self.browse(user_ids)
+#     def remove_from_groups(self, user_ids, group_ids):
+#         users = self.browse(user_ids)
 
-        for group_id in group_ids:
-            users.write({'groups_id': [(3, group_id)]})
+#         for group_id in group_ids:
+#             users.write({'groups_id': [(3, group_id)]})
 
-        return True
+#         return True
 
-    def call_remove_from_all_groups(self):
-        user_ids = self.search([('id', '=', 439)]).ids
-        group_ids = self.env['res.groups'].search(
-            [('id', 'in', [11, 25, 17, 45, 47, 8, 1, 57, 64, 42, 6, 24, 40, 39, 16, 26, 20, 5])]).ids
-        res_users_model = self.env['res.users']
-        res_users_model.remove_from_groups(user_ids, group_ids)
+#     def call_remove_from_all_groups(self):
+#         user_ids = self.search([('id', '=', 439)]).ids
+#         group_ids = self.env['res.groups'].search(
+#             [('id', 'in', [11, 25, 17, 45, 47, 8, 1, 57, 64, 42, 6, 24, 40, 39, 16, 26, 20, 5])]).ids
+#         res_users_model = self.env['res.users']
+#         res_users_model.remove_from_groups(user_ids, group_ids)
