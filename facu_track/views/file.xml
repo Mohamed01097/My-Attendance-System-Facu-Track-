@@ -1,0 +1,39 @@
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="facu_track_set_password">
+            <field name="name">facutrack password</field>
+            <field name="model">facu_track.password</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="new_password"/>
+                    </group>
+                    <footer>
+                        <button name="change_password" string="Change Password" type="object"
+                                class="oe_highlight"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="z"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="facutrack_change_password_action">
+            <field name="name">Change Password</field>
+            <field name="res_model">facu_track.password</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="facu_track_set_password"/>
+            <field name="target">new</field>
+        </record>
+
+
+        <menuitem name="Change Password"
+                  id="change_password_facu_track_menuitem"
+                  parent="facu_track_root"
+                  sequence="10" 
+                  action="facutrack_change_password_action"/>
+
+       
+    </data>
+</odoo>

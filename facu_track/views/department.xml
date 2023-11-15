@@ -1,0 +1,55 @@
+<odoo>
+    <data>
+
+        <record id="facu_dept_action" model="ir.actions.act_window">
+            <field name="name">Departments</field>
+            <field name="res_model">facu_track.dept</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to create a new department.
+                </p>
+            </field>
+        </record>
+
+
+        <!-- Tree View -->
+
+        <record id="view_faculty_department_tree" model="ir.ui.view">
+            <field name="name">department.tree</field>
+            <field name="model">facu_track.dept</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <!-- Form View -->
+
+        <record id="view_faculty_department_form" model="ir.ui.view">
+            <field name="name">department.form</field>
+            <field name="model">facu_track.dept</field>
+            <field name="arch" type="xml">
+                <form string="Department">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="prof_ids" widget="many2many_tags" groups="facu_track.facu_track_admins_group"/>
+                            <field name="student_ids" widget="many2many_tags" groups="facu_track.facu_track_president_section_profs_group"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <menuitem id="facu_track_dept"
+                  name="Department"
+                  parent="facu_track_root"
+                  action="facu_dept_action"/>
+
+    </data>
+</odoo>

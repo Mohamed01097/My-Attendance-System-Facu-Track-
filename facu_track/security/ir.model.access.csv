@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_facu_track_student,facu_track.student,model_facu_track_student,base.group_user,1,1,1,1
+access_facu_track_course,facu_track.course,model_facu_track_course,base.group_user,1,1,1,1
+access_facu_track_prof,facu_track.prof,model_facu_track_prof,base.group_user,1,1,1,1
+access_facu_track_dept,facu_track.dept,model_facu_track_dept,base.group_user,1,1,1,1

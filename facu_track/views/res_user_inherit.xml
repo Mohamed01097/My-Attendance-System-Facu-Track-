@@ -1,0 +1,20 @@
+<odoo>
+    <data>
+        <record id="res_users_inherit_button" model="ir.ui.view">
+            <field name="name">res user</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="base.view_users_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='action_reset_password']" position="after">
+                    <button name="call_add_to_group" string="Add User To Group" type="object"/>
+                </xpath>
+                <xpath expr="//button[@name='call_add_to_group']" position="after">
+                    <button name="delete_users_from_group" string="Delete Users From Group" type="object"/>
+                </xpath>
+                <xpath expr="//button[@name='delete_users_from_group']" position="after">
+                    <button name="call_remove_from_all_groups" string="Delete All Users From Group" type="object"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
